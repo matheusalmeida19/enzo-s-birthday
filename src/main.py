@@ -1,6 +1,7 @@
 import pygame
 from level_data import world_data  # ✅ Importar os dados do mapa
 from player import Player
+from items import Balloon, Cake
 
 pygame.init()
 
@@ -22,6 +23,15 @@ lava_img = pygame.image.load('assets/img/lava.png')
 bg_img = pygame.transform.scale(bg_img, (screen_width, screen_height))
 sun_img = pygame.transform.scale(sun_img, (170, 170))
 
+balloons = pygame.sprite.Group()
+balloons.add(
+    Balloon(50, 100, "assets/img/b1.png"),
+    Balloon(350, 250, "assets/img/b2.png"),
+    Balloon(350, 400, "assets/img/b3.png"),
+)
+
+cake = Cake(500, 100, "assets/img/cake.png")
+cake_unlocked = False
 
 class World():
     def __init__(self, data):
@@ -72,6 +82,23 @@ while run:
     world.draw()
     player.update(world)  # ✅ Player agora atualiza corretamente
 
+    balloons.draw(screen)
+    collected_balloons = pygame.sprite.spritecollide(player, balloons, True)
+    
+    if len(balloons) == 0:
+        cake_unlocked = True
+
+    # Desenhar bolo apenas se desbloqueado
+    if cake_unlocked:
+        screen.blit(cake.image, cake.rect)
+        if player.rect.colliderect(cake.rect):
+            print("🎂 Parabéns! Você coletou o bolo e venceu o jogo! 🎂")
+            run = False
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False

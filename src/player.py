@@ -48,7 +48,7 @@ class Player():
             self.vel_x = 0
 
         if key[pygame.K_SPACE] and self.on_ground:
-            self.vel_y = -15
+            self.vel_y = -16
             self.on_ground = False
 
         self.rect.x += self.vel_x
