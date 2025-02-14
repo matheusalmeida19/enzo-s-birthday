@@ -1,7 +1,8 @@
 import pygame
-from level_data import world_data  # ✅ Importar os dados do mapa
+from level_data import world_data
 from player import Player
 from items import Balloon, Cake
+from start_screen import show_start_screen
 
 pygame.init()
 
@@ -11,6 +12,8 @@ screen_height = 600
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Plataformer')
+
+show_start_screen(screen)
 
 # Define o tamanho dos tiles
 tile_size = 50
@@ -26,7 +29,7 @@ sun_img = pygame.transform.scale(sun_img, (170, 170))
 balloons = pygame.sprite.Group()
 balloons.add(
     Balloon(50, 100, "assets/img/b1.png"),
-    Balloon(350, 250, "assets/img/b2.png"),
+    Balloon(300, 100, "assets/img/b2.png"),
     Balloon(350, 400, "assets/img/b3.png"),
 )
 
