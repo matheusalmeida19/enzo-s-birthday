@@ -1,4 +1,4 @@
-# 🎂 Enzo's Birthday 🎂
+# 🎂 Enzo's Birthday 🎂 Version 1.0
 
 **Enzo's Birthday** é um jogo de plataforma em pixel art onde o jogador deve coletar três balões para desbloquear um bolo de aniversário e vencer o jogo!
 
