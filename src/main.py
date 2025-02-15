@@ -2,6 +2,7 @@ import pygame
 from level_data import world_data
 from player import Player
 from items import Balloon, Cake
+from victory_screen import show_victory_screen
 from start_screen import show_start_screen
 
 pygame.init()
@@ -73,7 +74,7 @@ class World():
 
 
 world = World(world_data)
-player = Player(100, screen_height - 130, screen)  # ✅ Agora passando a screen corretamente
+player = Player(100, screen_height - 130, screen)
 
 run = True
 clock = pygame.time.Clock()
@@ -83,10 +84,14 @@ while run:
     screen.blit(sun_img, (-10, -10))
 
     world.draw()
-    player.update(world)  # ✅ Player agora atualiza corretamente
+    player.update(world)
 
     balloons.draw(screen)
+    
     collected_balloons = pygame.sprite.spritecollide(player, balloons, True)
+    for balloon in collected_balloons:
+        balloon.play_sound()
+    
     
     if len(balloons) == 0:
         cake_unlocked = True
@@ -95,9 +100,29 @@ while run:
     if cake_unlocked:
         screen.blit(cake.image, cake.rect)
         if player.rect.colliderect(cake.rect):
+            cake.play_sound()
             print("🎂 Parabéns! Você coletou o bolo e venceu o jogo! 🎂")
             run = False
 
+    if cake_unlocked:
+        screen.blit(cake.image, cake.rect)
+        if player.rect.colliderect(cake.rect):
+            result = show_victory_screen(screen)  
+            if result == "replay":
+                # Reinicia o jogo
+                player = Player(100, screen_height - 130, screen)
+                balloons = pygame.sprite.Group()
+                balloons.add(
+                    Balloon(50, 100, "assets/img/b1.png"),
+                    Balloon(300, 100, "assets/img/b2.png"),
+                    Balloon(350, 400, "assets/img/b3.png"),
+                )
+                cake_unlocked = False
+            elif result == "menu":
+                show_start_screen(screen)  
+                player = Player(100, screen_height - 130, screen) 
+                
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False

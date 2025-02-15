@@ -3,6 +3,11 @@ import pygame
 def show_start_screen(screen):
     pygame.init()
     
+    pygame.mixer.init()
+    if not pygame.mixer.music.get_busy():
+        pygame.mixer.music.load("assets/songs/song1.mp3")
+        pygame.mixer.music.play(-1)  # -1 para repetir indefinidamente
+    
     # Carregar imagem de fundo
     bg_img = pygame.image.load("assets/img/bg2.jpg")
     bg_img = pygame.transform.scale(bg_img, (screen.get_width(), screen.get_height()))

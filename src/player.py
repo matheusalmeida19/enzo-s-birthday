@@ -2,15 +2,15 @@ import pygame
 
 class Player():
     def __init__(self, x, y, screen):
-        self.screen = screen  # ✅ Passar a tela como parâmetro
+        self.screen = screen  
 
-        # ✅ Corrigir carregamento das imagens de walk manualmente
+        
         self.walk_frames = [
             pygame.image.load(f'assets/img/p1_walk{str(i).zfill(2)}.png') for i in range(1, 12)
         ]
         self.walk_frames = [pygame.transform.scale(img, (30, 60)) for img in self.walk_frames]
 
-        # ✅ Sprite inicial (parado)
+        
         self.image = pygame.image.load('assets/img/p1_front.png')
         self.image = pygame.transform.scale(self.image, (30, 60))
 
@@ -23,7 +23,7 @@ class Player():
         self.on_ground = False
         self.facing_right = True
 
-        # ✅ Controle da animação
+        
         self.current_frame = 0
         self.animation_speed = 5
         self.frame_counter = 0
@@ -86,7 +86,7 @@ class Player():
         if self.rect.x > 600 - self.rect.width:
             self.rect.x = 600 - self.rect.width
 
-        # ✅ Animação do jogador
+        
         if moving:
             self.frame_counter += 1
             if self.frame_counter >= self.animation_speed:
