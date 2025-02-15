@@ -22,12 +22,16 @@ class Player():
         self.vel_y = 0
         self.on_ground = False
         self.facing_right = True
-
         
         self.current_frame = 0
         self.animation_speed = 5
         self.frame_counter = 0
-
+        
+        self.jump_sound = pygame.mixer.Sound("assets/songs/jump.mp3")
+        self.jump_sound.set_volume(0.1)
+        
+        
+        
     def update(self, world):
         self.vel_y += 0.8
         if self.vel_y > 10:
@@ -50,6 +54,7 @@ class Player():
         if key[pygame.K_SPACE] and self.on_ground:
             self.vel_y = -16
             self.on_ground = False
+            self.jump_sound.play()
 
         self.rect.x += self.vel_x
         for tile in world.tile_list:

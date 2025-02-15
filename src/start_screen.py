@@ -6,6 +6,7 @@ def show_start_screen(screen):
     pygame.mixer.init()
     if not pygame.mixer.music.get_busy():
         pygame.mixer.music.load("assets/songs/song1.mp3")
+        pygame.mixer.music.set_volume(0.2)
         pygame.mixer.music.play(-1)  # -1 para repetir indefinidamente
     
     # Carregar imagem de fundo

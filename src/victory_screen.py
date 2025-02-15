@@ -7,6 +7,7 @@ def show_victory_screen(screen):
     # Iniciar música da tela de vitória
     pygame.mixer.stop()
     pygame.mixer.music.load("assets/songs/song2.mp3")
+    pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1)  # -1 para repetir indefinidamente
     
     
@@ -43,12 +44,14 @@ def show_victory_screen(screen):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:  # Jogar novamente
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("assets/songs/song1.mp3")  # Retomar a música do jogo
+                    pygame.mixer.music.load("assets/songs/song1.mp3") # Retomar a música do jogo
+                    pygame.mixer.music.set_volume(0.2)
                     pygame.mixer.music.play(-1)
                     return "replay"
                 if event.key == pygame.K_m:  # Voltar ao menu inicial
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("assets/songs/song1.mp3")  # Música da tela inicial
+                    pygame.mixer.music.load("assets/songs/song1.mp3") # Música da tela inicial
+                    pygame.mixer.music.set_volume(0.2)
                     pygame.mixer.music.play(-1)
                     return "menu"
             
