@@ -29,6 +29,8 @@ Além disso, instale as bibliotecas necessárias no terminal com:
 
       pip install -r requirements.txt
 
+      pip install pygame
+
 ### Executar o jogo
 No terminal para iniciar o jogo use:
 
