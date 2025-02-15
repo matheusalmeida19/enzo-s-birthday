@@ -2,7 +2,9 @@
 
 **Enzo's Birthday** é um jogo de plataforma em pixel art onde o jogador deve coletar três balões para desbloquear um bolo de aniversário e vencer o jogo! 🎈🎂
 
-![Start Screen](assets/img/print.png)
+<p align="center">
+  <img src="assets/img/print.png" width="400">
+</p>
 
 ---
 
@@ -25,9 +27,9 @@ Antes de rodar o jogo, você precisa ter o **Python 3.10+** instalado.
 
 Além disso, instale as bibliotecas necessárias no terminal com:
 
-pip install -r requirements.txt
+      pip install -r requirements.txt
 
 ### Executar o jogo
 No terminal para iniciar o jogo use:
 
-python src/main.py
+      python src/main.py
