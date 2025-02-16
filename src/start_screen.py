@@ -1,4 +1,5 @@
 import pygame
+import sys  
 
 def show_start_screen(screen):
     pygame.init()
@@ -37,7 +38,9 @@ def show_start_screen(screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
+                sys.exit()
+                
+                
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     running = False  # Sai do loop ao pressionar ENTER

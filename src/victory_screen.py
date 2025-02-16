@@ -1,30 +1,25 @@
-# src/victory_screen.py
 import pygame
+import sys
 
 def show_victory_screen(screen):
     pygame.init()
 
-    # Iniciar música da tela de vitória
     pygame.mixer.stop()
     pygame.mixer.music.load("assets/songs/song2.mp3")
     pygame.mixer.music.set_volume(0.3)
-    pygame.mixer.music.play(-1)  # -1 para repetir indefinidamente
+    pygame.mixer.music.play(-1)
     
-    
-    
-    # Definir cores
     WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
 
-    # Carregar fundo da tela de vitória (se tiver uma imagem, adicione aqui)
+    # Carregar imagem de fundo
     victory_bg = pygame.image.load("assets/img/bg_victory.png")
     victory_bg = pygame.transform.scale(victory_bg, (screen.get_width(), screen.get_height()))
 
-    # Carregar fonte pixelada
+    # Carregar fontes pixeladas
     font = pygame.font.Font("assets/fonts/mine.ttf", 40)
     small_font = pygame.font.Font("assets/fonts/mine.ttf", 20)
 
-    # Criar textos
+    
     title_text = font.render("Happy Birthday!", True, WHITE)
     replay_text = small_font.render("Pressione R para Jogar Novamente", True, WHITE)
     menu_text = small_font.render("Pressione M para Menu Inicial", True, WHITE)
@@ -39,21 +34,21 @@ def show_victory_screen(screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
+                sys.exit()
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:  # Jogar novamente
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("assets/songs/song1.mp3") # Retomar a música do jogo
+                    pygame.mixer.music.load("assets/songs/song1.mp3")
                     pygame.mixer.music.set_volume(0.2)
                     pygame.mixer.music.play(-1)
                     return "replay"
+                
                 if event.key == pygame.K_m:  # Voltar ao menu inicial
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("assets/songs/song1.mp3") # Música da tela inicial
+                    pygame.mixer.music.load("assets/songs/song1.mp3")
                     pygame.mixer.music.set_volume(0.2)
                     pygame.mixer.music.play(-1)
                     return "menu"
-            
 
         pygame.display.update()

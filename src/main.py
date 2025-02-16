@@ -1,4 +1,5 @@
 import pygame
+import sys 
 from level_data import world_data
 from player import Player
 from items import Balloon, Cake
@@ -127,11 +128,9 @@ while run:
         if event.type == pygame.QUIT:
             run = False
     
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
 
     pygame.display.update()
     clock.tick(60)
 
 pygame.quit()
+sys.exit()
